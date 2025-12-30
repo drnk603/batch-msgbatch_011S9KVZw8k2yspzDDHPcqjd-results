@@ -366,9 +366,7 @@ a:focus-visible {
   background-color: var(--color-light-gray);
 }
 
-.bg-dark {
-  background-color: var(--color-charcoal-dark);
-}
+
 
 .bg-white {
   background-color: var(--color-white);
@@ -906,6 +904,7 @@ form, .c-form {
 
 .row.g-4 > * {
   margin-top: var(--bs-gutter-y);
+  width: 100%;
 }
 
 .c-form__group, .form-group {
@@ -1726,5 +1725,22 @@ hr {
   .px-5 {
     padding-left: var(--space-lg);
     padding-right: var(--space-lg);
+  }
+}
+
+/* AUTO-FIX: bg-dark improved contrast */
+.bg-dark > * {
+  color:white!important;
+}
+
+/* --- AUTO-INJECTED: AOS mobile/tablet override --- */
+@media (max-width: 1024px) {
+  [data-aos="fade-left"],
+  [data-aos="fade-right"] {
+    transform: translateX(0) !important;
+    opacity: 1 !important;
+  }
+  .c-logo__img {
+    display: none!important;
   }
 }

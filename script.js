@@ -302,7 +302,7 @@
       }
 
       if (fieldName === 'vorname' || fieldName === 'nachname') {
-        var nameRegex = /^[a-zA-ZÀ-ÿs-']{2,50}$/;
+        var nameRegex = /^[a-zA-ZÀ-ÿ\s-']{2,50}$/;
         if (value && !nameRegex.test(value)) {
           field.classList.add('is-invalid');
           errorDiv.textContent = 'Bitte geben Sie einen gültigen Namen ein (2-50 Zeichen, nur Buchstaben).';
@@ -312,7 +312,7 @@
       }
 
       if (fieldType === 'email' || fieldName === 'email') {
-        var emailRegex = /^[^s@]+@[^s@]+.[^s@]+$/;
+        var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (value && !emailRegex.test(value)) {
           field.classList.add('is-invalid');
           errorDiv.textContent = 'Bitte geben Sie eine gültige E-Mail-Adresse ein.';
@@ -322,7 +322,7 @@
       }
 
       if (fieldType === 'tel' || fieldName === 'telefon') {
-        var phoneRegex = /^[ds+-()]{10,20}$/;
+        var phoneRegex = /^[\d\s+\-()]{10,20}$/;
         if (value && !phoneRegex.test(value)) {
           field.classList.add('is-invalid');
           errorDiv.textContent = 'Bitte geben Sie eine gültige Telefonnummer ein.';
@@ -470,11 +470,12 @@
     
     function animateCount(element) {
       var text = element.textContent;
-      var number = parseInt(text.match(/d+/));
+      var numberMatch = text.match(/\d+/);
+      var number = numberMatch ? parseInt(numberMatch[0], 10) : NaN;
       
       if (isNaN(number)) return;
 
-      var suffix = text.replace(/d+/, '').trim();
+      var suffix = text.replace(/\d+/, '').trim();
       var duration = 2000;
       var start = 0;
       var increment = number / (duration / 16);
